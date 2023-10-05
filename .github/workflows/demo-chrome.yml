@@ -1,5 +1,5 @@
 name: Chrome
-on: push
+on: [push, workflow_dispatch]
 jobs:
   chrome:
     runs-on: ubuntu-22.04
