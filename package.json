@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/8r34d/aerial-tents-storm#readme",
   "devDependencies": {
-    "cypress": "^13.3.0"
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.6",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "cypress": "^13.3.0",
+    "esbuild": "^0.19.4",
+    "typescript": "^5.2.2"
   }
 }
