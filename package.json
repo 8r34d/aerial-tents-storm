@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/8r34d/aerial-tents-storm/issues"
   },
-  "homepage": "https://github.com/8r34d/aerial-tents-storm#readme"
+  "homepage": "https://github.com/8r34d/aerial-tents-storm#readme",
+  "devDependencies": {
+    "cypress": "^13.3.0"
+  }
 }
