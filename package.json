@@ -1,0 +1,23 @@
+{
+  "name": "aerial-tents-storm",
+  "version": "1.0.0",
+  "description": "aerial tents storm is an anagram of retail assortment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8r34d/aerial-tents-storm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/8r34d/aerial-tents-storm/issues"
+  },
+  "homepage": "https://github.com/8r34d/aerial-tents-storm#readme",
+  "devDependencies": {
+    "cypress": "^13.3.0"
+  }
+}
