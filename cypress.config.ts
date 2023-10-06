@@ -6,7 +6,8 @@ import { createEsbuildPlugin } from "@badeball/cypress-cucumber-preprocessor/esb
 
 export default defineConfig({
   e2e: {
-    specPattern: "**/*.feature",
+    baseUrl: "https://react-shopping-cart-67954.firebaseapp.com/",
+    specPattern: ["**/*.feature", "**/*.cy.ts"],
     async setupNodeEvents(
       on: Cypress.PluginEvents,
       config: Cypress.PluginConfigOptions
