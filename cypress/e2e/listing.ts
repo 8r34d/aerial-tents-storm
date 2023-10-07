@@ -1,16 +1,20 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import Listing from "../components/Listing";
+import ProductList from "../components/List";
 
-const listing = new Listing();
+const listing = new ProductList();
 
 Given("I visit the listing page", () => {
-  cy.visit("/");
+  listing.visitPage();
 });
 
 When("I view the listing page", () => {
-  cy.url().should("eq", Cypress.config().baseUrl);
+  listing.viewPage();
 });
 
-Then("I should see products found is {int}", (products: number) => {
-  cy.get(listing.locators().found).contains(`${products} Product(s) found`);
+Then("I should see {int} product(s) found", (products: number) => {
+  listing.assertProductsFound(products);
+});
+
+Then("I should see {int} item(s) in the list", (products: number) => {
+  listing.assertItemsFound(products);
 });

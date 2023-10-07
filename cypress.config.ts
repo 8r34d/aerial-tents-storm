@@ -8,6 +8,8 @@ export default defineConfig({
   e2e: {
     baseUrl: "https://react-shopping-cart-67954.firebaseapp.com/",
     specPattern: ["**/*.feature", "**/*.cy.ts"],
+    viewportWidth: 1920,
+    viewportHeight: 1080,
     async setupNodeEvents(
       on: Cypress.PluginEvents,
       config: Cypress.PluginConfigOptions

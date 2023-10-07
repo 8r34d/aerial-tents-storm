@@ -4,4 +4,5 @@ Feature: Listing Feature
 
     Given I visit the listing page
     When I view the listing page
-    Then I should see products found is 16
+    Then I should see 16 products found
+    And I should see 16 items in the list
