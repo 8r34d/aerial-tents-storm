@@ -7,6 +7,10 @@ import ProductList from "../../components/ProductList";
 
 const productList = new ProductList();
 
+Given("I add {product} to the cart", (product: string) => {
+  productList.addProduct(product);
+});
+
 Given("I visit the react shopping cart page", () => {
   productList.visitPage();
 });

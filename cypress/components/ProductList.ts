@@ -12,6 +12,13 @@ const locators = {
 };
 
 class ProductList {
+  addProduct = (product: string) => {
+    cy.get(locators.description)
+      .contains(product)
+      .siblings(locators.addToCart)
+      .click();
+  };
+
   assertItemsFound = (products: number) => {
     cy.get(locators.allListings)
       .find(locators.item)

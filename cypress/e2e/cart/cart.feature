@@ -10,19 +10,31 @@ Feature: Cart
     And I should see the subtotal "$ 0.00"
     And I close the cart
 
-# Scenario: Cart with Single Product Item
+  Scenario: Cart with Single Product Item
 
-#   Given I add "Cropped Stay Groovy off white" to the cart
-#   When I open the cart
-#   Then the subtotal should show "$ 10.90"
+    Given I visit the react shopping cart page
+    When I add "Cropped Stay Groovy off white" to the cart
+    Then I should see the subtotal "$ 10.90"
 
-# Scenario: Cart with Multiple Product Items
+  Scenario: Cart with Multiple Product Items
 
-#   Given I add "Cropped Stay Groovy off white" to the cart
-#   And I add "Basic Cactus White T-shirt" to the cart
-#   When I open the cart
-#   Then the subtotal should show "$24.15" "$ 24.15"
+    Given I visit the react shopping cart page
+    When I add "Cropped Stay Groovy off white" to the cart
+    And I add "Basic Cactus White T-shirt" to the cart
+    Then I should see the subtotal "$ 24.15"
 
 # Scenario: Increase Quantity of Single Product Item in Cart
 
 # Scenario: Increase Quantities of Multiple Product Items in Cart
+
+# Scenario: Descrease Quantity of Single Product Item in Cart
+
+# Scenario: Descrease Quantities of Multiple Product Items in Cart
+
+# Scenario: Cart with Single Product Item then Delete
+
+# Scenario: Cart with Multiple Product Items then Delete Single
+
+# Scenario: Cart with Multiple Product Items then Delete Multiple
+
+# Scenario: Cart with Multiple Product Items then Delete All
