@@ -1,13 +1,13 @@
 Feature:  Size Filter
 
-  # Scenario Outline: Filter By Single Size
-  # Refactor into DataTable
-
-  Scenario: Filter By XS
+  Scenario: Filter By XS and Unfilter By XS
     Given I visit the react shopping cart page
     When I filter by "XS"
     Then I should see the message 1 product found
     And I should see 1 product in the product list
+    When I unfilter by "XS"
+    Then I should see the message 16 products found
+    And I should see 16 products in the product list
 
   Scenario: Filter By S
     Given I visit the react shopping cart page
