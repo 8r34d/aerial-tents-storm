@@ -3,6 +3,10 @@ import Cart from "../../components/Cart";
 
 const cart = new Cart();
 
+When("I checkout the cart", () => {
+  cart.checkout();
+});
+
 When("I close the cart", () => {
   cart.closeCart();
 });

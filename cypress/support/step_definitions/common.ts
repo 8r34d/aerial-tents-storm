@@ -2,10 +2,11 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { defineParameterType } from "@badeball/cypress-cucumber-preprocessor";
 import Shipping from "../../types/Shipping";
 import Size from "../../types/Size";
-
 import ProductList from "../../components/ProductList";
+import Checkout from "../../components/Checkout";
 
 const productList = new ProductList();
+const checkout = new Checkout();
 
 Given("I add {product} to the cart", (product: string) => {
   productList.addProduct(product);
@@ -17,6 +18,10 @@ Given("I visit the react shopping cart page", () => {
 
 When("I view the react shopping cart page", () => {
   productList.viewPage();
+});
+
+Then("I should see checkout message {string}", (message: string) => {
+  checkout.assertConfirmation(message);
 });
 
 Then("I should see the message {int} product(s) found", (products: number) => {

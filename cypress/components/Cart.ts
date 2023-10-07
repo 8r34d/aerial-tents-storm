@@ -1,4 +1,5 @@
 const locators = {
+  checkout: ".sc-1h98xa9-11",
   empty: ".sc-7th5t8-1",
   quantity: ".sc-1h98xa9-3",
   subtotal: ".sc-1h98xa9-9",
@@ -20,6 +21,10 @@ class Cart {
   };
   assertTitle = (title: string) => {
     cy.get(locators.title).should("have.text", title);
+  };
+  checkout = () => {
+    cy.log("checkout");
+    cy.get(locators.checkout).click();
   };
   closeCart = () => {
     cy.log("close cart");

@@ -63,9 +63,6 @@ Feature:  Size Filter
     Then I should see the message 16 products found
     And I should see 16 products in the product list
 
-# Scenario Outline: Filter By Single Size and Unfilter
-# e.g. >> S then << S : update above Scenarios
-
 # Scenario Outline: Filter By Multiple Sizes
 # e.g. >> S, M
 
