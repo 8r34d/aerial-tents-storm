@@ -1,5 +1,8 @@
 Feature:  Size Filter
 
+  # Scenario Outline: Filter By Single Size
+  # Refactor into DataTable
+
   Scenario: Filter By XS
     Given I visit the react shopping cart page
     When I filter by "XS"
@@ -41,3 +44,18 @@ Feature:  Size Filter
     When I filter by "XXL"
     Then I should see the message 4 products found
     And I should see 4 products in the product list
+
+# Scenario Outline: Filter By Single Size and Unfilter
+# e.g. >> S then << S
+
+# Scenario Outline: Filter By Multiple Sizes
+# e.g. >> S, M
+
+# Scenario Outline: Filter By Multiple Sizes and Unfilter Single Size
+# e.g. >> S, M, L then << S
+
+# Scenario Outline: Filter By Multiple Sizes and Unfilter Multiple Sizes
+# e.g. >> S, M, L then << S, M
+
+# Scenario Outline: Filter By Multiple Sizes and Unfilter All
+# e.g. >> S, M, L then << S, M, L
