@@ -11,7 +11,7 @@ const locators = {
   bulk: ".sc-124al1g-7",
 };
 
-class List {
+class ProductList {
   assertItemsFound = (products: number) => {
     cy.get(locators.allListings)
       .find(locators.item)
@@ -32,4 +32,4 @@ class List {
   };
 }
 
-export default List;
+export default ProductList;
