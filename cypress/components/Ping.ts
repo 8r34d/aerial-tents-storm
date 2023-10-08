@@ -2,11 +2,7 @@ const resources = {
   ping: "ping",
 };
 
-class Booking {
-  requestCreateToken = (alias: string) => {
-    this.request(alias, resources.ping);
-  };
-
+class Ping {
   requestHealthCheck = (alias: string) => {
     this.request(alias, resources.ping);
   };
@@ -23,4 +19,4 @@ class Booking {
   };
 }
 
-export default Booking;
+export default Ping;

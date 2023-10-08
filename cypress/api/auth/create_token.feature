@@ -2,10 +2,5 @@ Feature: Auth - Create Token
 
   Scenario: Create Token
 
-
-Feature: Ping - HealthCheck
-
-  Scenario: HealthCheck
-
-    Given I request a healthcheck as "getHealthcheck"
-    Then I should get a response as "getHealthcheck" with 201 "Created"
+    Given I request an auth token as "postCreateToken"
+    Then I should get an auth token response as "postCreateToken" with 200 "auth"
