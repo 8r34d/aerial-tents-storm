@@ -23,5 +23,9 @@
     "cypress": "^13.3.0",
     "esbuild": "^0.19.4",
     "typescript": "^5.2.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "filterSpecs": true,
+    "omitFiltered": true
   }
 }

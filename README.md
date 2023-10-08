@@ -24,28 +24,55 @@ Automated testing of UI and API
 
 ## Tags
 
-Test tags applied to feature files and scenarios
+Test tags applied to features and scenarios
 
-- **@ui**
+- for illustration, tags have only been applied to:
 
-  - all ui tests : **@smoke**, **@regression**, ...
+  - api: get-booking-ids.feature
+  - ui: cart.feature
 
-- **api**
+### @api
 
-  - all api tests : **@smoke**, **@regression**, ...
+api only
 
-- **@smoke**
+    npx cypress run --env tags=@api
 
-  - all smoke tests : **@ui**, **@api**
+### @cart
 
-- **@regression**
+cart feature only
 
-  - all regression tests : **@ui**, **@api**
+    npx cypress run --env tags=@cart
 
-## UI
+### @get-booking-ids
+
+get-booking-ids feature only
+
+    npx cypress run --env tags=@get-booking-ids
+
+### @regression
+
+regression testing of api and ui
+
+    npx cypress run --env tags=@regression
+
+### @smoke
+
+smoke testing of api and ui
+
+    npx cypress run --env tags=@smoke
+
+### @ui
+
+ui only
+
+    npx cypress run --env tags=@ui
+
+## Test Applications
+
+### UI
 
 - https://react-shopping-cart-67954.firebaseapp.com/
 
-## API
+### API
 
 - https://restful-booker.herokuapp.com/
