@@ -7,7 +7,9 @@ When("I request a healthcheck as {string}", (alias: string) => {
 Then(
   "I should get a response as {string} with {int} {string}",
   (alias: string, status: number, body: string) => {
-    cy.get(`@${alias}`).its("status").should("eq", status);
-    cy.get(`@${alias}`).its("body").should("eq", body);
+    cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
+      expect(response.status).to.eq(status);
+      expect(response.body).to.eq(body);
+    });
   }
 );
