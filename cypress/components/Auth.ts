@@ -9,10 +9,9 @@ class Auth {
     });
   };
 
-  requestCreateToken = (alias: string) => {
-    this.request(alias, "POST", resources.auth, {
-      username: "admin",
-      password: "password123",
+  requestCreateToken = (alias: string, fixture: string) => {
+    cy.fixture(fixture).then(($f) => {
+      this.request(alias, "POST", resources.auth, $f);
     });
   };
 

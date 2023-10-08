@@ -18,9 +18,12 @@ Then(
   }
 );
 
-When("I request an auth token as {string}", (alias: string) => {
-  auth.requestCreateToken(alias);
-});
+When(
+  "I request an auth token as {string} with {string}",
+  (alias: string, fixture: string) => {
+    auth.requestCreateToken(alias, fixture);
+  }
+);
 
 Then(
   "I should get an auth token response as {string} with {int} {string}",
