@@ -3,6 +3,8 @@ import HttpMethod from "../types/HttpMethod";
 import PingAlias from "../types/PingAlias";
 import PingFixture from "../types/PingFixture";
 
+const { _ } = Cypress;
+
 const resources = {
   ping: "ping",
 };
@@ -15,7 +17,7 @@ class Ping {
     cy.request(method, `${Cypress.env("api_booker")}/${resource}`).as(alias);
   };
   response = (alias: PingAlias, status: HttpStatus, fixture: PingFixture) => {
-    cy.fixture(fixture).then(($f) => {
+    cy.fixture(_.camelCase(fixture)).then(($f) => {
       cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
         expect(response.status).to.eq(status);
         expect(response.body).to.eq($f);
