@@ -4,18 +4,21 @@ import Ping from "../../components/Ping";
 import Auth from "../../components/Auth";
 import AuthAlias from "../../types/AuthAlias";
 import AuthFixture from "../../types/AuthFixture";
+import PingAlias from "../../types/PingAlias";
+import HttpStatus from "../../types/HTTPStatus";
+import PingFixture from "../../types/PingFixture";
 
 const auth = new Auth();
 const booking = new Booking();
 const ping = new Ping();
 
-When("I request a healthcheck as {string}", (alias: string) => {
+When("I request a healthcheck as {string}", (alias: PingAlias) => {
   ping.requestHealthCheck(alias);
 });
 
 Then(
   "I should get a healthcheck response as {string} with {int} {string}",
-  (alias: string, status: number, fixture: string) => {
+  (alias: PingAlias, status: HttpStatus, fixture: PingFixture) => {
     ping.response(alias, status, fixture);
   }
 );
@@ -29,7 +32,7 @@ When(
 
 Then(
   "I should get an auth token response as {string} with {int} {string}",
-  (alias: AuthAlias, status: number, fixture: AuthFixture) => {
+  (alias: AuthAlias, status: HttpStatus, fixture: AuthFixture) => {
     auth.responseCreateToken(alias, status, fixture);
   }
 );

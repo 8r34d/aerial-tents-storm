@@ -1,15 +1,20 @@
+import HttpStatus from "../types/HTTPStatus";
+import HttpMethod from "../types/HttpMethod";
+import PingAlias from "../types/PingAlias";
+import PingFixture from "../types/PingFixture";
+
 const resources = {
   ping: "ping",
 };
 
 class Ping {
-  requestHealthCheck = (alias: string) => {
-    this.request(alias, resources.ping);
+  requestHealthCheck = (alias: PingAlias) => {
+    this.request(alias, "GET", resources.ping);
   };
-  request = (alias: string, resource: string) => {
-    cy.request(`${Cypress.env("api_booker")}/${resource}`).as(alias);
+  request = (alias: PingAlias, method: HttpMethod, resource: string) => {
+    cy.request(method, `${Cypress.env("api_booker")}/${resource}`).as(alias);
   };
-  response = (alias: string, status: number, fixture: string) => {
+  response = (alias: PingAlias, status: HttpStatus, fixture: PingFixture) => {
     cy.fixture(fixture).then(($f) => {
       cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
         expect(response.status).to.eq(status);

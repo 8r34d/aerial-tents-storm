@@ -1,5 +1,6 @@
 import AuthAlias from "../types/AuthAlias";
 import AuthFixture from "../types/AuthFixture";
+import HttpStatus from "../types/HTTPStatus";
 import HttpMethod from "../types/HttpMethod";
 
 const { _ } = Cypress;
@@ -9,7 +10,7 @@ const resources = {
 };
 
 class Auth {
-  printToken = (alias: string) => {
+  printToken = (alias: AuthAlias) => {
     cy.get<Cypress.ObjectLike>(`@${alias}`).then(($alias) => {
       cy.log($alias.body);
     });
@@ -25,7 +26,7 @@ class Auth {
     alias: AuthAlias,
     method: HttpMethod,
     resource: string,
-    body: object
+    body: JSON
   ) => {
     cy.request(method, `${Cypress.env("api_booker")}/${resource}`, body).as(
       alias
@@ -34,7 +35,7 @@ class Auth {
 
   responseCreateToken = (
     alias: AuthAlias,
-    status: number,
+    status: HttpStatus,
     fixture: AuthFixture
   ) => {
     cy.fixture(_.camelCase(fixture)).then(($f) => {
