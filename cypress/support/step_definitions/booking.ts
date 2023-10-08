@@ -2,6 +2,8 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import Booking from "../../components/Booking";
 import Ping from "../../components/Ping";
 import Auth from "../../components/Auth";
+import AuthAlias from "../../types/AuthAlias";
+import AuthFixture from "../../types/AuthFixture";
 
 const auth = new Auth();
 const booking = new Booking();
@@ -20,15 +22,14 @@ Then(
 
 When(
   "I request an auth token as {string} with {string}",
-  (alias: string, fixture: string) => {
+  (alias: AuthAlias, fixture: AuthFixture) => {
     auth.requestCreateToken(alias, fixture);
   }
 );
 
 Then(
   "I should get an auth token response as {string} with {int} {string}",
-  (alias: string, status: number, fixture: string) => {
-    auth.response(alias, status, fixture);
-    auth.printToken(alias);
+  (alias: AuthAlias, status: number, fixture: AuthFixture) => {
+    auth.responseCreateToken(alias, status, fixture);
   }
 );

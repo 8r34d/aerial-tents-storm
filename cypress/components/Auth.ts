@@ -1,3 +1,9 @@
+import AuthAlias from "../types/AuthAlias";
+import AuthFixture from "../types/AuthFixture";
+import HttpMethod from "../types/HttpMethod";
+
+const { _ } = Cypress;
+
 const resources = {
   auth: "auth",
 };
@@ -9,25 +15,43 @@ class Auth {
     });
   };
 
-  requestCreateToken = (alias: string, fixture: string) => {
-    cy.fixture(fixture).then(($f) => {
+  requestCreateToken = (alias: AuthAlias, fixture: AuthFixture) => {
+    cy.fixture(_.camelCase(fixture)).then(($f) => {
       this.request(alias, "POST", resources.auth, $f);
     });
   };
 
-  request = (alias: string, method: string, resource: string, body: object) => {
+  request = (
+    alias: AuthAlias,
+    method: HttpMethod,
+    resource: string,
+    body: object
+  ) => {
     cy.request(method, `${Cypress.env("api_booker")}/${resource}`, body).as(
       alias
     );
   };
-  response = (alias: string, status: number, fixture: string) => {
-    cy.fixture(fixture).then(($f) => {
-      cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
-        expect(response.status).to.eq(status);
+
+  responseCreateToken = (
+    alias: AuthAlias,
+    status: number,
+    fixture: AuthFixture
+  ) => {
+    cy.fixture(_.camelCase(fixture)).then(($f) => {
+      this.response(alias, status, $f);
+    });
+  };
+
+  response = (alias: AuthAlias, status: number, fixture: AuthFixture) => {
+    cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
+      expect(response.status).to.eq(status);
+      if (alias === "postCreateToken") {
         expect(response.body)
-          .to.have.property($f)
+          .to.have.property(fixture)
           .and.to.match(/[a-zA-Z0-9]{15,}/);
-      });
+      } else {
+        expect(response.body).to.eql(fixture);
+      }
     });
   };
 }

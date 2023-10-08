@@ -3,13 +3,6 @@ const resources = {
 };
 
 class Booking {
-  requestCreateToken = (alias: string) => {
-    this.request(alias, resources.ping);
-  };
-
-  requestHealthCheck = (alias: string) => {
-    this.request(alias, resources.ping);
-  };
   request = (alias: string, resource: string) => {
     cy.request(`${Cypress.env("api_booker")}/${resource}`).as(alias);
   };
