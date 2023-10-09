@@ -67,12 +67,22 @@ ui only
 
     npx cypress run --env tags=@ui
 
-## Test Applications
+## UI - Test Application
 
-### UI
+- https://react-shopping-cart-67954.firebaseapp.com
 
-- https://react-shopping-cart-67954.firebaseapp.com/
+## API - Test Application
 
-### API
+Code: https://github.com/mwinteringham/restful-booker
 
-- https://restful-booker.herokuapp.com/
+API docs: https://restful-booker.herokuapp.com/apidoc/index.html
+
+    risk of test flakiness due to many users working with the data
+
+- https://restful-booker.herokuapp.com
+
+### Local Docker
+
+    local user(s) with control over the data
+
+- http://localhost:3001
