@@ -24,28 +24,65 @@ Automated testing of UI and API
 
 ## Tags
 
-Test tags applied to feature files and scenarios
+Test tags applied to features and scenarios
 
-- **@ui**
+- for illustration, tags have only been applied to:
 
-  - all ui tests : **@smoke**, **@regression**, ...
+  - api: get-booking-ids.feature
+  - ui: cart.feature
 
-- **api**
+### @api
 
-  - all api tests : **@smoke**, **@regression**, ...
+api only
 
-- **@smoke**
+    npx cypress run --env tags=@api
 
-  - all smoke tests : **@ui**, **@api**
+### @cart
 
-- **@regression**
+cart feature only
 
-  - all regression tests : **@ui**, **@api**
+    npx cypress run --env tags=@cart
 
-## UI
+### @get-booking-ids
 
-- https://react-shopping-cart-67954.firebaseapp.com/
+get-booking-ids feature only
 
-## API
+    npx cypress run --env tags=@get-booking-ids
 
-- https://restful-booker.herokuapp.com/
+### @regression
+
+regression testing of api and ui
+
+    npx cypress run --env tags=@regression
+
+### @smoke
+
+smoke testing of api and ui
+
+    npx cypress run --env tags=@smoke
+
+### @ui
+
+ui only
+
+    npx cypress run --env tags=@ui
+
+## UI - Test Application
+
+- https://react-shopping-cart-67954.firebaseapp.com
+
+## API - Test Application
+
+Code: https://github.com/mwinteringham/restful-booker
+
+API docs: https://restful-booker.herokuapp.com/apidoc/index.html
+
+    risk of test flakiness due to many users working with the data
+
+- https://restful-booker.herokuapp.com
+
+### Local Docker
+
+    local user(s) with control over the data
+
+- http://localhost:3001

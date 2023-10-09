@@ -4,7 +4,10 @@
   "description": "aerial tents storm is an anagram of retail assortment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:open": "cypress open",
+    "cy:open:booker:local": "cypress open --env api_booker=http://localhost:3001",
+    "cy:run": "cypress run",
+    "cy:run:booker:local": "cypress run --env api_booker=http://localhost:3001"
   },
   "repository": {
     "type": "git",
@@ -23,5 +26,9 @@
     "cypress": "^13.3.0",
     "esbuild": "^0.19.4",
     "typescript": "^5.2.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "filterSpecs": true,
+    "omitFiltered": true
   }
 }

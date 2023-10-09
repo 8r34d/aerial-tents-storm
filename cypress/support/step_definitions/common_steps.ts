@@ -5,6 +5,8 @@ import Size from "../../types/Size";
 import ProductList from "../../components/ProductList";
 import Checkout from "../../components/Checkout";
 
+const { _ } = Cypress;
+
 const productList = new ProductList();
 const checkout = new Checkout();
 
@@ -39,7 +41,7 @@ defineParameterType({
   name: "locator",
   regexp: /"([^"]*)"/,
   transformer: (s: string) => {
-    const t = Cypress._.camelCase(s);
+    const t = _.camelCase(s);
     cy.log(t);
     return t;
   },
