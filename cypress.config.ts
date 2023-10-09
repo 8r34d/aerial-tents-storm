@@ -7,7 +7,6 @@ import { createEsbuildPlugin } from "@badeball/cypress-cucumber-preprocessor/esb
 export default defineConfig({
   env: {
     api_booker: "https://restful-booker.herokuapp.com",
-    // api_booker: "http://localhost:3001",
   },
   e2e: {
     baseUrl: "https://react-shopping-cart-67954.firebaseapp.com/",
