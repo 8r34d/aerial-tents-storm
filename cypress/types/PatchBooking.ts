@@ -1,4 +1,4 @@
-import Booking from "./Booking";
+import Booking from "./BookingDetails";
 
 type PatchBooking = Partial<Booking>;
 

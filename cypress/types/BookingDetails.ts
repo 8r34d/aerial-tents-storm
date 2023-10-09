@@ -1,6 +1,6 @@
 import BookingDates from "./BookingDates";
 
-type Booking = {
+type BookingDetails = {
   firstname: string;
   lastname: string;
   totalprice: number;
@@ -9,4 +9,4 @@ type Booking = {
   additionalneeds: string;
 };
 
-export default Booking;
+export default BookingDetails;

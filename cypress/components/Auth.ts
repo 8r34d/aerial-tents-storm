@@ -10,40 +10,22 @@ const resources = {
 };
 
 class Auth {
-  printToken = (alias: AuthAlias) => {
-    cy.get<Cypress.ObjectLike>(`@${alias}`).then(($alias) => {
-      cy.log($alias.body);
-    });
-  };
-
-  requestCreateToken = (alias: AuthAlias, fixture: AuthFixture) => {
-    cy.fixture(_.camelCase(fixture)).then(($f) => {
-      this.request(alias, "POST", resources.auth, $f);
-    });
-  };
-
-  request = (
+  private request = (
     alias: AuthAlias,
     method: HttpMethod,
     resource: string,
-    body: JSON
+    body: string
   ) => {
     cy.request(method, `${Cypress.env("api_booker")}/${resource}`, body).as(
       alias
     );
   };
 
-  responseCreateToken = (
+  private response = (
     alias: AuthAlias,
     status: HttpStatus,
     fixture: AuthFixture
   ) => {
-    cy.fixture(_.camelCase(fixture)).then(($f) => {
-      this.response(alias, status, $f);
-    });
-  };
-
-  response = (alias: AuthAlias, status: number, fixture: AuthFixture) => {
     cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
       expect(response.status).to.eq(status);
       if (alias === "postCreateToken") {
@@ -53,6 +35,28 @@ class Auth {
       } else {
         expect(response.body).to.eql(fixture);
       }
+    });
+  };
+
+  printToken = (alias: AuthAlias) => {
+    cy.get<Cypress.ObjectLike>(`@${alias}`).then(($alias) => {
+      cy.log(JSON.stringify($alias.body));
+    });
+  };
+
+  requestCreateToken = (alias: AuthAlias, fixture: AuthFixture) => {
+    cy.fixture(_.camelCase(fixture)).then(($f) => {
+      this.request(alias, "POST", resources.auth, $f);
+    });
+  };
+
+  responseCreateToken = (
+    alias: AuthAlias,
+    status: HttpStatus,
+    fixture: AuthFixture
+  ) => {
+    cy.fixture(_.camelCase(fixture)).then(($f) => {
+      this.response(alias, status, $f);
     });
   };
 }

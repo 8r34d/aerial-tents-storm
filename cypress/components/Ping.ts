@@ -10,18 +10,36 @@ const resources = {
 };
 
 class Ping {
+  private request = (
+    alias: PingAlias,
+    method: HttpMethod,
+    resource: string
+  ) => {
+    cy.request(method, `${Cypress.env("api_booker")}/${resource}`).as(alias);
+  };
+
+  private response = (
+    alias: PingAlias,
+    status: HttpStatus,
+    fixture: PingFixture
+  ) => {
+    cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
+      expect(response.status).to.eq(status);
+      expect(response.body).to.eq(fixture);
+    });
+  };
+
   requestHealthCheck = (alias: PingAlias) => {
     this.request(alias, "GET", resources.ping);
   };
-  request = (alias: PingAlias, method: HttpMethod, resource: string) => {
-    cy.request(method, `${Cypress.env("api_booker")}/${resource}`).as(alias);
-  };
-  response = (alias: PingAlias, status: HttpStatus, fixture: PingFixture) => {
+
+  responseHealthCheck = (
+    alias: PingAlias,
+    status: HttpStatus,
+    fixture: PingFixture
+  ) => {
     cy.fixture(_.camelCase(fixture)).then(($f) => {
-      cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
-        expect(response.status).to.eq(status);
-        expect(response.body).to.eq($f);
-      });
+      this.response(alias, status, $f);
     });
   };
 }

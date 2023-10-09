@@ -1,3 +1,3 @@
-type BookingAlias = "";
+type BookingAlias = "getBookingIds";
 
 export default BookingAlias;

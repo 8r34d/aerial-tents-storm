@@ -12,7 +12,7 @@ const resources = {
 /*
   all booking ids
 
-  https://restful-booker.herokuapp.com/booking
+  1 - https://restful-booker.herokuapp.com/booking
 
   booking ids by 
 
@@ -26,23 +26,71 @@ const resources = {
   checkout optional 	date    Return bookings that have a checkout date greater than or equal to the set checkout date.
                               Format must be CCYY-MM-DD
                               
-  https://restful-booker.herokuapp.com/booking?firstname=sally&lastname=brown
+  2 - https://restful-booker.herokuapp.com/booking?firstname=sally&lastname=brown
+
+  3 - https://restful-booker.herokuapp.com/booking?checkin=2014-03-13&checkout=2014-05-21
+
+  fixture names:
+  - all bookings          [1] => allBookings          -- fixture does not need to be called / empty fixture
+  - bookings by name      [2] => bookingsByName       -- fixture contains the firstname, lastname
+  - bookings by date      [3] => bookingsByDate       -- fixture contains the checkin, checkout
+  - bookings by firstname [4] => bookingsByFirstname  -- fixture contains the firstname
+  - bookings by lastname  [5] => bookingsByLastname   -- fixture contains the lastname
+  - bookings by checkin   [6] => bookingsByCheckin    -- fixture contains the checkin
+  - bookings by checkout  [7] => bookingsByCheckout   -- fixture contains the checkout
+
+  - [A] valid data    2 -> 7
+  - [B] invalid data  2 -> 7
+
+  => 15 scenarios
+
+  -- bookings seed data, there are 10 records, unsure if these are the same every time
+  -- test with prod vs local version
+  -- get by id can be used for bookings 1 to 10
+
 */
 
 class Booking {
+  private request = (
+    alias: BookingAlias,
+    method: HttpMethod,
+    resource: string,
+    body: string
+  ) => {
+    cy.request(method, `${Cypress.env("api_booker")}/${resource}`, body).as(
+      alias
+    );
+  };
+
+  private response = (
+    alias: BookingAlias,
+    status: HttpStatus,
+    fixture: BookingFixture
+  ) => {
+    cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
+      expect(response.status).to.eq(status);
+
+      if (alias === "getBookingIds") {
+        expect(response.body.length).to.be.greaterThan(0);
+        expect(response.body[0])
+          .to.have.property(fixture)
+          .and.to.match(/[0-9]{1,}/);
+      } else {
+        //
+      }
+    });
+  };
+
+  printBooking = (alias: BookingAlias) => {
+    cy.get<Cypress.ObjectLike>(`@${alias}`).then(($alias) => {
+      cy.log(JSON.stringify($alias.body));
+    });
+  };
+
   requestGetBookingIds = (alias: BookingAlias, fixture: BookingFixture) => {
     cy.fixture(_.camelCase(fixture)).then(($f) => {
       this.request(alias, "GET", resources.booking, $f);
     });
-  };
-
-  request = (
-    alias: BookingAlias,
-    method: HttpMethod,
-    resource: string,
-    body: JSON
-  ) => {
-    cy.request(`${Cypress.env("api_booker")}/${resource}`).as(alias);
   };
 
   responseGetBookingIds = (
@@ -52,19 +100,6 @@ class Booking {
   ) => {
     cy.fixture(_.camelCase(fixture)).then(($f) => {
       this.response(alias, status, $f);
-    });
-  };
-
-  response = (
-    alias: BookingAlias,
-    status: HttpStatus,
-    fixture: BookingFixture
-  ) => {
-    cy.fixture(_.camelCase(fixture)).then(($f) => {
-      cy.get<Cypress.ObjectLike>(`@${alias}`).should((response) => {
-        expect(response.status).to.eq(status);
-        expect(response.body).to.eq($f);
-      });
     });
   };
 }
