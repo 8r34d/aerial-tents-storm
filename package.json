@@ -7,7 +7,7 @@
     "cy:open": "cypress open",
     "cy:open:booker:local": "cypress open --env api_booker=http://localhost:3001",
     "cy:run": "cypress run",
-    "cy:run:booker:local": "cypress oprunen --env api_booker=http://localhost:3001"
+    "cy:run:booker:local": "cypress run --env api_booker=http://localhost:3001"
   },
   "repository": {
     "type": "git",
