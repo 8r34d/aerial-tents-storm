@@ -19,12 +19,22 @@ Feature:  Size Filter
       | "XL"       | 10             | "XL"         | 16               |
       | "XXL"      | 4              | "XXL"        | 16               |
 
+  Scenario Outline: Filter By <FilterSize> and <FilterSize2>
+    Given I visit the react shopping cart page
+    When I filter by <FilterSize>
+    Then I should see the message <FilterProducts> product found
+    And I filter by <FilterSize2>
+    Then I should see the message <FilterProducts2> product found
 
-
-
-
-# Scenario Outline: Filter By Multiple Sizes
-# e.g. >> S, M
+    Examples:
+      | FilterSize | FilterProducts | FilterSize2 | FilterProducts2 |
+      | "XS"       | 1              | "S"         | 2               |
+      | "S"        | 2              | "M"         | 3               |
+      | "M"        | 1              | "ML"        | 2               |
+      | "ML"       | 2              | "L"         | 11              |
+      | "L"        | 10             | "XL"        | 13              |
+      | "XL"       | 10             | "XXL"       | 10              |
+      | "XXL"      | 4              | "XS"        | 5               |
 
 # Scenario Outline: Filter By Multiple Sizes and Unfilter Single Size
 # e.g. >> S, M, L then << S
