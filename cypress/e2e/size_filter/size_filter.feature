@@ -65,11 +65,6 @@ Feature:  Size Filter
       | "M"        | 1              | "ML"        | 2               | "L"         | 11              | "M"          | 11               |
       | "ML"       | 2              | "L"         | 11              | "XL"        | 14              | "ML"         | 13               |
       | "L"        | 10             | "XL"        | 13              | "XXL"       | 13              | "L"          | 10               |
-      | "XL"       | 10             | "XXL"       | 10              | "XS"        | 11              | "XL"         | 1                |
-      | "XXL"      | 4              | "XS"        | 5               | "S"         | 5               | "XXL"        | 1                |
+      | "XL"       | 10             | "XXL"       | 10              | "XS"        | 11              | "XL"         | 5                |
+      | "XXL"      | 4              | "XS"        | 5               | "S"         | 6               | "XXL"        | 2                |
 
-# Scenario Outline: Filter By Multiple Sizes and Unfilter Multiple Sizes
-# e.g. >> S, M, L then << S, M
-
-# Scenario Outline: Filter By Multiple Sizes and Unfilter All
-# e.g. >> S, M, L then << S, M, L
